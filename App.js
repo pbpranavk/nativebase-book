@@ -1,21 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { NativeBaseProvider, Box, Button, Text } from "native-base";
 
 export default function App() {
+  const [isTextVisible, setIsTextVisible] = useState(false);
+
+  const handlePress = () => {
+    setIsTextVisible(!isTextVisible);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeBaseProvider>
+      <Box margin={"10%"}>
+        <Button width={40} onPress={handlePress}>
+          Hello World
+        </Button>
+        {isTextVisible && <Text>Hey there</Text>}
+      </Box>
+    </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
